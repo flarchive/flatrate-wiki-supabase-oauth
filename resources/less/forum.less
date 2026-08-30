@@ -1,0 +1,149 @@
+// FlatRate Wiki is the only public authentication authority for the forum.
+// Keep the FoF OAuth provider button visible, but remove Flarum's native
+// username/password controls and public signup affordances.
+
+.LogInModal {
+  .Form,
+  .Modal-footer {
+    display: none !important;
+  }
+
+  .LogInButtons {
+    width: calc(100% - 32px);
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .LogInButtonContainer:not(.LogInButtonContainer--flatrate) {
+    display: none !important;
+  }
+
+  .LogInButtonContainer--flatrate {
+    width: 100%;
+    margin: 0;
+  }
+
+  .LogInButtonContainer--flatrate .Button {
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 20px;
+    gap: 10px;
+    border: 1px solid #0f172a;
+    border-radius: 12px;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+    transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+  }
+
+  .LogInButtonContainer--flatrate .Button:hover,
+  .LogInButtonContainer--flatrate .Button:focus-visible {
+    background: #1e293b;
+    border-color: #1e293b;
+    color: #ffffff;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.24);
+    text-decoration: none;
+  }
+
+  .LogInButtonContainer--flatrate .Button:active {
+    background: #020617;
+    border-color: #020617;
+    transform: translateY(1px);
+  }
+
+  .LogInButtonContainer--flatrate .Button-icon {
+    flex: 0 0 auto;
+    margin: 0;
+    font-size: 18px;
+  }
+
+  // Flarum's block-button defaults ellipsize Button-labelText. This provider
+  // is the only login path, so the full brand/action must always remain visible.
+  .LogInButtonContainer--flatrate .Button-label,
+  .LogInButtonContainer--flatrate .Button-labelText {
+    min-width: 0;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .LogInButtonContainer--flatrate .Button-labelText {
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .LogInModal {
+    .Modal-body {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .LogInButtons {
+      width: 100%;
+      max-width: none;
+    }
+
+    .LogInButtonContainer--flatrate .Button {
+      min-height: 56px;
+      padding-left: 18px;
+      padding-right: 18px;
+      font-size: 16px;
+    }
+  }
+}
+
+// OAuth registration still uses Flarum's SignUpModal when a valid provider
+// registration token is present. We only remove the public/manual signup entry.
+.item-signUp {
+  display: none !important;
+}
+
+// Password and email credentials are managed by FlatRate.wiki / Supabase, not
+// by the local forum account. Flarum Nicknames adds Change Nickname here when
+// the member permission and nickname display driver are active.
+.SettingsPage {
+  .item-changePassword,
+  .item-changeEmail {
+    display: none !important;
+  }
+}
+
+.FlatRateReplyJobBreakdownToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  margin: 0 8px 0 0;
+  color: @muted-color;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+
+  input {
+    flex: 0 0 auto;
+    margin: 0;
+  }
+
+  span {
+    white-space: nowrap;
+  }
+}
+
+.FlatRateReplyJobBreakdownBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 2px 8px;
+  border: 1px solid #16a34a;
+  border-radius: 999px;
+  background: #ecfdf3;
+  color: #166534;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
